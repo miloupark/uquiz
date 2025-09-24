@@ -1,16 +1,37 @@
-# React + Vite
+# UQuiz?
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<br>
 
-Currently, two official plugins are available:
+<details>
+<summary>🛤️ 라우팅 설정</summary>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| 주소                | 컴포넌트 | 컨텐츠                   |
+| ------------------- | -------- | ------------------------ |
+| `/`                 | Home     | 닉네임 설정 페이지(메인) |
+| `/quiz/:nickname`   | Quiz     | 퀴즈 풀이 페이지         |
+| `results/:nickname` | Results  | 결과 페이지              |
 
-## React Compiler
+</details>
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+<details>
+<summary>👥 닉네임 설정 페이지 구현</summary>
 
-## Expanding the ESLint configuration
+- [x] React 컴포넌트를 활용하여 `Home` 컴포넌트에 닉네임 설정 페이지를 구현합니다.
+- [x] `Home` 컴포넌트에서는 닉네임을 입력받는 페이지를 구성합니다.
+- [x] 사용자는 닉네임을 입력할 수 있는 입력창과 `시작하기` 버튼을 통해 퀴즈를 시작할 수 있습니다.
+- [x] 닉네임을 입력하지 않은 상태에서 `시작하기` 버튼을 누를 경우, 닉네임 입력은 필수임을 알리는 경고창이 표시됩니다.
+- [x] 닉네임을 정상적으로 입력한 경우, `/quiz/닉네임` 형식의 경로로 라우팅되며 퀴즈 화면으로 이동합니다
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<br>
+
+### 단계별로 구현하기
+
+1. `Home.jsx` 파일을 생성하고, `Home` 컴포넌트를 정의합니다.
+2. 컴포넌트 내에 페이지 제목(UQuiz), 닉네임 입력창, 시작하기 버튼을 구성합니다.
+3. `useState`를 사용하여 닉네임 입력값을 관리할 상태 변수를 생성합니다.
+4. 닉네임 입력창에 `onChange` 이벤트를 연결하여, 입력값이 변경될 때 상태를 업데이트하는 함수를 작성합니다.
+5. `시작하기` 버튼 클릭 시, 닉네임 입력 여부를 조건으로 다음과 같이 처리합니다:
+   - 닉네임이 입력되지 않은 경우: `닉네임을 입력해주세요.`라는 경고창(alert)을 띄웁니다.
+   - 닉네임이 입력된 경우: `/quiz/(입력된 닉네임)` 경로로 페이지를 라우팅합니다.
+
+</details>
