@@ -1,5 +1,8 @@
 # UQuiz?
 
+- [GitHub](https://github.com/miloupark/uquiz)
+- [Study Log](https://binyard.me/OZ/llog/uquiz.html)
+
 <br>
 
 <details>
