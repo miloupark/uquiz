@@ -35,7 +35,6 @@ function Home() {
           value={nickname}
           placeholder="닉네임을 입력하세요."
           onChange={handleNickname}
-          required
         />
 
         <button type="submit">시작하기</button>
