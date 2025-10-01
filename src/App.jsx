@@ -1,16 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Home from "./components/Home";
-import Quiz from "./components/Quiz";
-import Results from "./components/Results";
+import RouteConfig from "./router";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="quiz/:nickname" element={<Quiz />} />
-        <Route path="results/:nickname" element={<Results />} />
+        {RouteConfig.map((config) => (
+          <Route key={config.path} {...config} />
+        ))}
       </Routes>
     </BrowserRouter>
   );
