@@ -6,6 +6,12 @@ function Home() {
   const [nickname, setNickname] = useState("");
   const navigate = useNavigate();
 
+  const handleNickname = (e) => {
+    const target = e.target;
+    // console.log(target.value);
+    setNickname(target.value);
+  };
+
   const handleStart = (e) => {
     e.preventDefault();
     if (!nickname.trim()) {
@@ -18,6 +24,7 @@ function Home() {
   return (
     <section>
       <h1>UQuiz</h1>
+
       <form onSubmit={handleStart}>
         <label htmlFor="nickname-input" className="a11yhidden">
           닉네임
@@ -27,9 +34,10 @@ function Home() {
           type="text"
           value={nickname}
           placeholder="닉네임을 입력하세요."
-          onChange={(e) => setNickname(e.target.value)}
+          onChange={handleNickname}
           required
         />
+
         <button type="submit">시작하기</button>
       </form>
     </section>
