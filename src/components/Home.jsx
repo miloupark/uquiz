@@ -1,5 +1,6 @@
 // 🧩 닉네임 설정 페이지 (메인 페이지)
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
@@ -15,9 +16,10 @@ function Home() {
   const handleStart = (e) => {
     e.preventDefault();
     if (!nickname.trim()) {
-      alert("닉네임을 입력해주세요.");
+      toast.error("닉네임을 입력해주세요.");
       return;
     }
+    toast.success("퀴즈 시작!");
     navigate(`/quiz/${encodeURIComponent(nickname)}`);
   };
 

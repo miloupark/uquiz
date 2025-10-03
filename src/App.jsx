@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import RouteConfig from "./router";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
           <Route key={config.path} {...config} />
         ))}
       </Routes>
+      <Toaster position="top-center" reverseOrder={true} />
     </BrowserRouter>
   );
 }
