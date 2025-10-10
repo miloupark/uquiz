@@ -47,7 +47,9 @@ function Home() {
             onChange={handleNickname}
             className="flex-1 text-sm outline-none border border-neutral-300 p-2 rounded-md bg-neutral-50 placeholder:text-neutral-400 hover:border-neutral-300 hover:bg-neutral-100 focus-visible:border-blue-500 focus-visible:ring-4 focus-visible:ring-blue-500/10 transition-all"
           />
-          <TextButton>시작하기</TextButton>
+          <TextButton type="submit" inactive={!nickname.trim()}>
+            시작하기
+          </TextButton>
         </form>
       </div>
     </section>

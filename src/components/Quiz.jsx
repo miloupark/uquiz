@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import questions from '../data/questions.json';
 import toast from 'react-hot-toast';
 import useResultStore from '../stores/useResultStore';
+import TextButton from './button/TextButton';
 
 export default function Quiz() {
   const { nickname } = useParams();
@@ -52,32 +53,33 @@ export default function Quiz() {
   };
 
   return (
-    <section>
-      <h2>{nickname}님의 퀴즈</h2>
-
-      <div>
-        문제 {currentIndex + 1} / {questions.length}
-        <h3>{current.question}</h3>
+    <section className="min-h-screen flex items-center justify-center p-10">
+      <div className="w-full max-w-120 grid p-5 gap-5 rounded-xl bg-neutral-50 shadow-md">
+        <h2>{nickname}님의 퀴즈</h2>
+        <div>
+          문제 {currentIndex + 1} / {questions.length}
+          <h3>{current.question}</h3>
+        </div>
+        {/* 선택지 */}
+        <ul>
+          {current.options.map((option, index) => (
+            <li key={index}>
+              <label>
+                <input
+                  type="radio"
+                  name="option"
+                  checked={selectedOption === index}
+                  onChange={() => handleSelect(index)}
+                />
+                {option}
+              </label>
+            </li>
+          ))}
+        </ul>
+        <TextButton onClick={handleNext} inactive={selectedOption === null}>
+          {isLast ? '제출' : '다음'}
+        </TextButton>
       </div>
-
-      {/* 선택지 */}
-      <ul>
-        {current.options.map((option, index) => (
-          <li key={index}>
-            <label>
-              <input
-                type="radio"
-                name="option"
-                checked={selectedOption === index}
-                onChange={() => handleSelect(index)}
-              />
-              {option}
-            </label>
-          </li>
-        ))}
-      </ul>
-
-      <button onClick={handleNext}>{isLast ? '제출' : '다음'}</button>
     </section>
   );
 }
