@@ -8,7 +8,7 @@ export default function TextButton({
     <button
       type={type}
       {...props}
-      className={`h-10 inline-flex justify-center items-center text-sm font-medium p-2 rounded-md border outline-none transition duration-300 ease-in-out
+      className={`h-12 inline-flex justify-center items-center text-sm font-medium p-2 rounded-md border outline-none transition duration-300 ease-in-out
         ${
           inactive
             ? 'bg-neutral-200 text-neutral-400 border-neutral-50'

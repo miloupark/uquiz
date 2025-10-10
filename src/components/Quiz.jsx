@@ -56,25 +56,38 @@ export default function Quiz() {
     <section className="min-h-screen flex items-center justify-center p-10">
       <div className="w-full max-w-120 grid p-5 gap-5 rounded-xl bg-neutral-50 shadow-md">
         <h2>{nickname}님의 퀴즈</h2>
-        <div>
-          문제 {currentIndex + 1} / {questions.length}
-          <h3>{current.question}</h3>
-        </div>
+
+        <h3>
+          <span className="text-xl font-medium pr-1">Q{currentIndex + 1}.</span>
+          {current.question}
+        </h3>
+        <p className="text-end text-sm text-primary">
+          {currentIndex + 1} / {questions.length}
+        </p>
         {/* 선택지 */}
-        <ul>
-          {current.options.map((option, index) => (
-            <li key={index}>
-              <label>
-                <input
-                  type="radio"
-                  name="option"
-                  checked={selectedOption === index}
-                  onChange={() => handleSelect(index)}
-                />
-                {option}
-              </label>
-            </li>
-          ))}
+        <ul className="grid gap-y-2">
+          {current.options.map((option, index) => {
+            const checked = selectedOption === index;
+
+            return (
+              <li
+                key={index}
+                className={`flex border text-sm border-neutral-200 rounded-md
+                  ${checked ? 'border-primary/40' : 'border-neutral-200'}`}
+              >
+                <label className="w-full h-10 px-4 py-2">
+                  <input
+                    type="radio"
+                    name="option"
+                    checked={checked}
+                    onChange={() => handleSelect(index)}
+                    className="mr-4"
+                  />
+                  {option}
+                </label>
+              </li>
+            );
+          })}
         </ul>
         <TextButton onClick={handleNext} inactive={selectedOption === null}>
           {isLast ? '제출' : '다음'}
