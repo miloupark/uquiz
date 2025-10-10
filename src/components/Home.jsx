@@ -1,10 +1,10 @@
 // 🧩 닉네임 설정 페이지 (메인 페이지)
-import { useState } from "react";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
-  const [nickname, setNickname] = useState("");
+  const [nickname, setNickname] = useState('');
   const navigate = useNavigate();
 
   const handleNickname = (e) => {
@@ -16,31 +16,44 @@ function Home() {
   const handleStart = (e) => {
     e.preventDefault();
     if (!nickname.trim()) {
-      toast.error("닉네임을 입력해주세요.");
+      toast.error('닉네임을 입력해주세요.');
       return;
     }
-    toast.success("퀴즈 시작!");
+    toast.success('퀴즈 시작!');
     navigate(`/quiz/${encodeURIComponent(nickname)}`);
   };
 
   return (
-    <section>
-      <h1>UQuiz</h1>
-
-      <form onSubmit={handleStart}>
-        <label htmlFor="nickname-input" className="a11yhidden">
-          닉네임
-        </label>
-        <input
-          id="nickname-input"
-          type="text"
-          value={nickname}
-          placeholder="닉네임을 입력하세요."
-          onChange={handleNickname}
-        />
-
-        <button type="submit">시작하기</button>
-      </form>
+    <section className="min-h-screen flex items-center justify-center p-10 ">
+      <div className="w-full max-w-120 grid p-5 gap-5 rounded-xl bg-neutral-50 shadow-md">
+        <h1 className="font-logo font-bold text-2xl">UQuiz?</h1>
+        <p className="text-4 font-medium tracking-tighter">
+          준비됐나요? 바로 시작!
+        </p>
+        <form
+          onSubmit={handleStart}
+          noValidate
+          className="flex flex-col gap-2 text-center"
+        >
+          <label htmlFor="nickname-input" className="sr-only">
+            닉네임
+          </label>
+          <input
+            id="nickname-input"
+            type="text"
+            value={nickname}
+            placeholder="닉네임을 입력하세요."
+            onChange={handleNickname}
+            className="flex-1 text-sm outline-none border border-neutral-300 p-2 rounded-md bg-neutral-50 placeholder:text-neutral-400 hover:border-neutral-300 hover:bg-neutral-100 focus-visible:border-blue-500 focus-visible:ring-4 focus-visible:ring-blue-500/10 transition-all"
+          />
+          <button
+            type="submit"
+            className="h-10 inline-flex justify-center items-center text-sm font-medium text-primary p-2 rounded-md bg-neutral-300 border border-neutral-50 hover:border-neutral-300 hover:bg-primary hover:text-white outline-none focus-visible:border-blue-500 focus-visible:ring-4 focus-visible:ring-blue-500/10 transition duration-300 ease-in-out"
+          >
+            시작하기
+          </button>
+        </form>
+      </div>
     </section>
   );
 }
