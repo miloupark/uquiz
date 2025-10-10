@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import TextButton from './button/TextButton';
 
 function Home() {
   const [nickname, setNickname] = useState('');
@@ -24,7 +25,7 @@ function Home() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center p-10 ">
+    <section className="min-h-screen flex items-center justify-center p-10">
       <div className="w-full max-w-120 grid p-5 gap-5 rounded-xl bg-neutral-50 shadow-md">
         <h1 className="font-logo font-bold text-2xl">UQuiz?</h1>
         <p className="text-4 font-medium tracking-tighter">
@@ -46,12 +47,7 @@ function Home() {
             onChange={handleNickname}
             className="flex-1 text-sm outline-none border border-neutral-300 p-2 rounded-md bg-neutral-50 placeholder:text-neutral-400 hover:border-neutral-300 hover:bg-neutral-100 focus-visible:border-blue-500 focus-visible:ring-4 focus-visible:ring-blue-500/10 transition-all"
           />
-          <button
-            type="submit"
-            className="h-10 inline-flex justify-center items-center text-sm font-medium text-primary p-2 rounded-md bg-neutral-300 border border-neutral-50 hover:border-neutral-300 hover:bg-primary hover:text-white outline-none focus-visible:border-blue-500 focus-visible:ring-4 focus-visible:ring-blue-500/10 transition duration-300 ease-in-out"
-          >
-            시작하기
-          </button>
+          <TextButton>시작하기</TextButton>
         </form>
       </div>
     </section>
