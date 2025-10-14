@@ -1,17 +1,17 @@
 // 🧩 퀴즈 풀이 페이지
-import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import questions from '../data/questions.json';
-import toast from 'react-hot-toast';
-import useResultStore from '../stores/useResultStore';
-import TextButton from './button/TextButton';
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import questions from "../data/questions.json";
+import toast from "react-hot-toast";
+import useResultStore from "../stores/useResultStore";
+import TextButton from "./button/TextButton";
 
 export default function Quiz() {
   const { nickname } = useParams();
   const navigate = useNavigate();
 
   // 점수 저장 액션
-  const addResult = useResultStore((state) => state.addResult);
+  const addRanking = useResultStore((state) => state.addRanking);
 
   // 상태
   const [currentIndex, setCurrentIndex] = useState(0); // 현재 문제 번호
@@ -30,7 +30,7 @@ export default function Quiz() {
   const handleNext = () => {
     // 선택하지 않았으면 경고
     if (selectedOption === null) {
-      toast.error('선택지를 선택해주세요.');
+      toast.error("선택지를 선택해주세요.");
       return;
     }
 
@@ -43,13 +43,14 @@ export default function Quiz() {
 
     // 마지막 문제
     if (isLast) {
-      addResult(nickname, nextScore);
+      // 고유 id 전달
+      const resultId = crypto.randomUUID();
+      addRanking(nickname, nextScore, resultId);
       navigate(`/results/${encodeURIComponent(nickname)}`);
       return;
     }
 
-    // 다음 문제로 이동
-    setCurrentIndex((prev) => prev + 1);
+    setCurrentIndex((prev) => prev + 1); // 다음 문제로 이동
   };
 
   return (
@@ -61,7 +62,7 @@ export default function Quiz() {
           <span className="text-xl font-medium pr-1">Q{currentIndex + 1}.</span>
           {current.question}
         </h3>
-        <p className="text-end text-sm text-primary">
+        <p className="text-end text-sm">
           {currentIndex + 1} / {questions.length}
         </p>
         {/* 선택지 */}
@@ -73,7 +74,7 @@ export default function Quiz() {
               <li
                 key={index}
                 className={`flex border text-sm border-neutral-200 rounded-md
-                  ${checked ? 'border-primary/40' : 'border-neutral-200'}`}
+                  ${checked ? "border-primary/40" : "border-neutral-200"}`}
               >
                 <label className="w-full h-10 px-4 py-2">
                   <input
@@ -90,7 +91,7 @@ export default function Quiz() {
           })}
         </ul>
         <TextButton onClick={handleNext} inactive={selectedOption === null}>
-          {isLast ? '제출' : '다음'}
+          {isLast ? "제출" : "다음"}
         </TextButton>
       </div>
     </section>
