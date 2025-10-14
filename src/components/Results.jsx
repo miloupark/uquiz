@@ -4,6 +4,7 @@ import useResultStore from "../stores/useResultStore";
 import questions from "../data/questions.json";
 import { Eraser, Home, RotateCw } from "lucide-react";
 import CenteredCard from "./layout/CenteredCard";
+import IconButton from "./button/IconButton";
 
 function Results() {
   const { nickname } = useParams();
@@ -39,7 +40,7 @@ function Results() {
       <div className="flex justify-between px-10 py-2">
         <span>내 점수</span>
         <span className="text-center">
-          {score}점 / {questions.length}
+          {score} / {questions.length}
         </span>
       </div>
       <p className="text-center">전체 랭킹</p>
@@ -59,28 +60,20 @@ function Results() {
         </ul>
       )}
 
-      <Link
-        to={`/quiz/${encodeURIComponent(nickname)}`}
-        className="flex items-center gap-2"
-        aria-label="현재 닉네임으로 다시 퀴즈 시작"
-      >
-        <RotateCw />
-        <span>다시 도전하기</span>
-      </Link>
-
-      <button
-        type="button"
-        onClick={handleHome}
-        className="flex items-center gap-2"
-      >
-        <Home />
-        <span>처음으로 돌아가기</span>
-      </button>
-
-      <button type="button" onClick={handleResetAll} className="flex gap-2">
-        <Eraser />
-        <span>기록 모두 지우기</span>
-      </button>
+      <div className="flex items-center justify-between">
+        <IconButton as={Link} to={`/quiz/${encodeURIComponent(nickname)}`}>
+          <RotateCw />
+          <span>다시 도전하기</span>
+        </IconButton>
+        <IconButton onClick={handleHome}>
+          <Home />
+          <span>처음으로 돌아가기</span>
+        </IconButton>
+        <IconButton onClick={handleResetAll}>
+          <Eraser />
+          <span>기록 모두 지우기</span>
+        </IconButton>
+      </div>
     </CenteredCard>
   );
 }
