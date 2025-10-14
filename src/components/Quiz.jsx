@@ -5,6 +5,7 @@ import questions from "../data/questions.json";
 import toast from "react-hot-toast";
 import useResultStore from "../stores/useResultStore";
 import TextButton from "./button/TextButton";
+import CenteredCard from "./layout/CenteredCard";
 
 export default function Quiz() {
   const { nickname } = useParams();
@@ -54,46 +55,44 @@ export default function Quiz() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center p-10">
-      <div className="w-full max-w-120 grid p-5 gap-5 rounded-xl bg-neutral-50 shadow-md">
-        <h2>{nickname}님의 퀴즈</h2>
+    <CenteredCard>
+      <h2>{nickname}님의 퀴즈</h2>
+      <h3>
+        <span className="text-xl font-medium pr-1">Q{currentIndex + 1}.</span>
+        {current.question}
+      </h3>
+      <p className="text-end text-sm">
+        {currentIndex + 1} / {questions.length}
+      </p>
 
-        <h3>
-          <span className="text-xl font-medium pr-1">Q{currentIndex + 1}.</span>
-          {current.question}
-        </h3>
-        <p className="text-end text-sm">
-          {currentIndex + 1} / {questions.length}
-        </p>
-        {/* 선택지 */}
-        <ul className="grid gap-y-2">
-          {current.options.map((option, index) => {
-            const checked = selectedOption === index;
+      {/* 선택지 */}
+      <ul className="grid gap-y-2">
+        {current.options.map((option, index) => {
+          const checked = selectedOption === index;
+          return (
+            <li
+              key={index}
+              className={`flex border text-sm border-neutral-200 rounded-md
+                ${checked ? "border-primary/40" : "border-neutral-200"}`}
+            >
+              <label className="w-full h-10 px-4 py-2">
+                <input
+                  type="radio"
+                  name="option"
+                  checked={checked}
+                  onChange={() => handleSelect(index)}
+                  className="mr-4"
+                />
+                {option}
+              </label>
+            </li>
+          );
+        })}
+      </ul>
 
-            return (
-              <li
-                key={index}
-                className={`flex border text-sm border-neutral-200 rounded-md
-                  ${checked ? "border-primary/40" : "border-neutral-200"}`}
-              >
-                <label className="w-full h-10 px-4 py-2">
-                  <input
-                    type="radio"
-                    name="option"
-                    checked={checked}
-                    onChange={() => handleSelect(index)}
-                    className="mr-4"
-                  />
-                  {option}
-                </label>
-              </li>
-            );
-          })}
-        </ul>
-        <TextButton onClick={handleNext} inactive={selectedOption === null}>
-          {isLast ? "제출" : "다음"}
-        </TextButton>
-      </div>
-    </section>
+      <TextButton onClick={handleNext} inactive={selectedOption === null}>
+        {isLast ? "제출" : "다음"}
+      </TextButton>
+    </CenteredCard>
   );
 }
