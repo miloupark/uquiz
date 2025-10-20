@@ -1,5 +1,5 @@
 // 🧩 결과 페이지
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import useResultStore from "../stores/useResultStore";
 import questions from "../data/questions.json";
 import { Eraser, Home, RotateCw } from "lucide-react";
@@ -9,7 +9,6 @@ import IconButton from "./button/IconButton";
 function Results() {
   const { nickname } = useParams();
   const { state } = useLocation();
-  const navigate = useNavigate();
 
   // Zustand에서 데이터 불러오기
   const results = useResultStore((state) => state.results);
@@ -28,9 +27,6 @@ function Results() {
   const handleResetAll = () => {
     resetResults();
   };
-
-  // 홈 버튼
-  const handleHome = () => navigate("/");
 
   return (
     <CenteredCard>
@@ -65,7 +61,7 @@ function Results() {
           <RotateCw />
           <span>다시 도전하기</span>
         </IconButton>
-        <IconButton onClick={handleHome}>
+        <IconButton as={Link} to={"/"}>
           <Home />
           <span>처음으로 돌아가기</span>
         </IconButton>
