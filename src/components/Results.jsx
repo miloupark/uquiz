@@ -5,6 +5,7 @@ import questions from "../data/questions.json";
 import { Eraser, Home, RotateCw } from "lucide-react";
 import CenteredCard from "./layout/CenteredCard";
 import IconButton from "./button/IconButton";
+import { useMemo } from "react";
 
 function Results() {
   const { nickname } = useParams();
@@ -14,14 +15,24 @@ function Results() {
   const results = useResultStore((state) => state.results);
   const resetResults = useResultStore((state) => state.resetResults);
 
-  // 내 히스토리, 최신 점수
-  const history = results.filter((r) => r.nickname === nickname);
-  const latest = history.at(-1);
+  // 내 히스토리
+  const history = useMemo(
+    () => results.filter((r) => r.nickname === nickname),
+    [results, nickname]
+  );
+
+  // 최신 점수
+  const latest = history[history.length - 1];
+
+  // 점수
   const score =
     typeof state?.score === "number" ? state.score : latest?.score ?? 0;
 
   // 전체 랭킹
-  const topRanking = [...results].sort((a, b) => b.score - a.score);
+  const topRanking = useMemo(
+    () => [...results].sort((a, b) => b.score - a.score),
+    [results]
+  );
 
   // 리셋 버튼
   const handleResetAll = () => {
