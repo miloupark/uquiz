@@ -4,6 +4,8 @@
 - [Study Log](https://binyard.me/OZ/llog/uquiz.html)
 - [React-Hot-Toast](https://react-hot-toast.com/)
 - [npm React-Hot-Toast](https://www.npmjs.com/package/react-hot-toast)
+- [font - Pretendard](https://github.com/orioncactus/pretendard?tab=readme-ov-file)
+- [font - 학교안심 꼬꼬마](https://noonnu.cc/font_page/1300#google_vignette)
 
 <br>
 

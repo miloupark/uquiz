@@ -1,0 +1,20 @@
+@import "./fonts.css";
+@import "tailwindcss";
+
+@theme {
+  /* typo */
+  --font-sans: "Pretendard", system-ui, "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", "Segoe UI", Arial, sans-serif;
+  --font-logo: "SchoolSafeLittleOne", system-ui, "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", sans-serif;
+  --font-heading: "Pretendard", system-ui, ui-sans-serif;
+
+  /* color */
+  --color-primary: #2d2013ff;
+}
+
+@layer base {
+  html {
+    @apply bg-primary text-primary;
+  }
+}

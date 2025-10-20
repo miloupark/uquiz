@@ -1,7 +1,7 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
-import RouteConfig from './router';
-import { Toaster } from 'react-hot-toast';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./styles/App.css";
+import RouteConfig from "./router";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
